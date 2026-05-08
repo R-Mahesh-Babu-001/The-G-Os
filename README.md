@@ -10,7 +10,6 @@ Built from scratch. No Linux kernel. No compromises.</p>
   <img src="https://img.shields.io/badge/Architecture-x86%2032--bit-orange?style=flat-square" />
   <img src="https://img.shields.io/badge/Kernel-C%2B%2B%20%2B%20Assembly-green?style=flat-square" />
   <img src="https://img.shields.io/badge/Bootloader-GRUB%20Multiboot-red?style=flat-square" />
-  <img src="https://img.shields.io/badge/Linux%20Kernel-None-critical?style=flat-square" />
 </p>
 
 </div>
