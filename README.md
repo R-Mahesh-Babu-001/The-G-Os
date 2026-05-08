@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>⚙️ The-G-Os</h1>
+<h1>The-G-Os</h1>
 
 <p><strong>An independent terminal-based operating system kernel written in C++ and Assembly.</strong><br>
 Built from scratch. No Linux kernel. No compromises.</p>
@@ -143,7 +143,7 @@ make run-net
 Replace the link with your actual GitHub release URL:
 
 ```bash
-wget https://github.com/YOUR_USERNAME/The-G-Os/releases/download/v0.3/the-g-os.iso
+https://github.com/R-Mahesh-Babu-001/The-G-Os/releases/tag/v0.3
 ```
 
 ---
