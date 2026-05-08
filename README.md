@@ -1,132 +1,127 @@
-````md
-# The-G-Os
+<div align="center">
 
-The-G-Os is an independent terminal-based operating system kernel written in C++ and Assembly without using the Linux kernel.
+<h1>⚙️ The-G-Os</h1>
 
-I started this project because I wanted to build an operating system that I could truly understand, control, and shape for my own use. Existing operating systems all have their own limitations: Windows often feels heavy and restrictive, macOS is proprietary and tightly controlled, and Linux has many distributions, each with its own strengths, weaknesses, and design choices. Instead of depending completely on any existing system, I wanted to experiment with building my own OS from the ground up — a lightweight, terminal-first system focused on simplicity, speed, learning, and full ownership of the computing environment.
+<p><strong>An independent terminal-based operating system kernel written in C++ and Assembly.</strong><br>
+Built from scratch. No Linux kernel. No compromises.</p>
 
-The-G-Os is currently a low-level kernel development project designed to explore how an operating system works internally, including booting, terminal rendering, keyboard input, shell design, memory management, RAM-based file handling, PCI hardware discovery, and future networking support.
+<p>
+  <img src="https://img.shields.io/badge/Version-v0.3-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/Architecture-x86%2032--bit-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Kernel-C%2B%2B%20%2B%20Assembly-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Bootloader-GRUB%20Multiboot-red?style=flat-square" />
+  <img src="https://img.shields.io/badge/Linux%20Kernel-None-critical?style=flat-square" />
+</p>
 
----
-
-## Current Features
-
-- Independent C++ kernel
-- Assembly boot entry
-- GRUB Multiboot boot support
-- VGA text-mode terminal
-- Custom boot splash screen
-- Keyboard input handling
-- Built-in terminal shell
-- Shell command history
-- RAM-based file system simulation
-- Bitmap memory manager skeleton
-- PCI device scanner
-- Network command placeholders
-- Lightweight design for old x86 hardware
-- QEMU and VirtualBox support
-- No Linux kernel used
+</div>
 
 ---
 
-## Current Commands
+## Overview
 
-```txt
-help
-about
-version
-ls
-cat readme
-cat system
-cat network
-cat hpmini
-cat dsa
-meminfo
-pci
-netinfo
-ping 8.8.8.8
-history
-clear
-reboot
-````
+The-G-Os is a low-level kernel development project built entirely from scratch in C++ and x86 Assembly. The goal is simple: build an operating system I can truly understand, control, and shape — without depending on Linux or any existing kernel.
+
+Windows feels bloated and restrictive. macOS is proprietary and closed. Linux is powerful, but fragmented across countless distributions each with their own trade-offs. The-G-Os is my answer — a lightweight, terminal-first OS that starts small, boots fast, and grows into a fully independent computing environment.
+
+**Current capabilities include:** booting via GRUB, a VGA text-mode terminal, a functional shell with command history, RAM-based file system simulation, PCI hardware scanning, and a memory manager skeleton.
 
 ---
 
-## Technologies Used
+## Features
 
-* C++
-* x86 Assembly
-* GRUB Multiboot
-* VGA Text Mode
-* Low-level Hardware I/O
-* Makefile
-* QEMU
-* VirtualBox
-* WSL Ubuntu for building on Windows
+| Category | Details |
+|---|---|
+| **Kernel** | Independent C++ kernel, no Linux dependency |
+| **Boot** | Assembly boot entry, GRUB Multiboot support |
+| **Display** | VGA text-mode terminal, custom splash screen |
+| **Input** | Full keyboard input handling |
+| **Shell** | Built-in terminal shell with command history |
+| **Storage** | RAM-based file system simulation |
+| **Memory** | Bitmap memory manager skeleton |
+| **Hardware** | PCI device scanner |
+| **Network** | Network command placeholders (driver in progress) |
+| **Platform** | QEMU and VirtualBox compatible |
+| **Target** | Lightweight — runs on old x86 hardware |
+
+---
+
+## Shell Commands
+
+```
+help          Show available commands
+about         About this OS
+version       Display version info
+ls            List files
+cat readme    View the readme file
+cat system    View system info
+cat network   View network info
+cat hpmini    View HP Mini info
+cat dsa       View DSA notes
+meminfo       Show memory information
+pci           List PCI devices
+netinfo       Show network info
+ping 8.8.8.8  Ping a host (placeholder)
+history       Show command history
+clear         Clear the terminal
+reboot        Reboot the system
+```
+
+---
+
+## Technologies
+
+- **C++** — Kernel logic and system internals
+- **x86 Assembly** — Boot entry and low-level hardware control
+- **GRUB Multiboot** — Bootloader standard
+- **VGA Text Mode** — Terminal rendering
+- **Low-level Hardware I/O** — Direct port access
+- **Makefile** — Build system
+- **QEMU / VirtualBox** — Emulation and virtualization
+- **WSL Ubuntu** — Build environment on Windows
 
 ---
 
 ## Build Requirements
 
-Recommended setup:
+> **Recommended setup:** Windows + WSL Ubuntu + VS Code
 
-```txt
-Windows + WSL Ubuntu + VS Code
-```
-
-Install dependencies:
+Install all dependencies:
 
 ```bash
 sudo apt update
-
 sudo apt install -y \
-build-essential \
-bison \
-flex \
-libgmp3-dev \
-libmpc-dev \
-libmpfr-dev \
-texinfo \
-grub-pc-bin \
-xorriso \
-qemu-system-x86 \
-nasm \
-make \
-gcc-i686-linux-gnu \
-g++-i686-linux-gnu \
-binutils-i686-linux-gnu
+  build-essential bison flex \
+  libgmp3-dev libmpc-dev libmpfr-dev texinfo \
+  grub-pc-bin xorriso qemu-system-x86 nasm make \
+  gcc-i686-linux-gnu g++-i686-linux-gnu binutils-i686-linux-gnu
 ```
 
 ---
 
-## Build Instructions
+## Build & Run
 
-Open the project folder:
+**1. Navigate to the project directory:**
 
 ```bash
 cd The-G-Os
 ```
 
-Build the ISO:
+**2. Build the ISO:**
 
 ```bash
 make clean
 make
 ```
 
-This generates:
+This produces: `the-g-os.iso`
 
-```txt
-the-g-os.iso
-```
-
-Run using QEMU:
+**3. Run in QEMU:**
 
 ```bash
 make run
 ```
 
-Run using QEMU with an Intel e1000 virtual network card:
+**4. Run with Intel e1000 virtual network card:**
 
 ```bash
 make run-net
@@ -136,24 +131,17 @@ make run-net
 
 ## Running in VirtualBox
 
-1. Create a new virtual machine.
-2. Select type as `Other`.
-3. Select version as `Other/Unknown`.
-4. Assign at least `512 MB` RAM.
-5. Attach `the-g-os.iso` as the optical disk.
-6. Start the virtual machine.
+1. Create a new virtual machine
+2. Set **Type** → `Other`, **Version** → `Other/Unknown`
+3. Assign at least **512 MB RAM**
+4. Attach `the-g-os.iso` as the optical disk
+5. Start the machine
 
 ---
 
 ## ISO Download
 
-Replace the link below with your actual GitHub release ISO link:
-
-```txt
-https://github.com/YOUR_USERNAME/The-G-Os/releases/download/v0.3/the-g-os.iso
-```
-
-Download using:
+Replace the link with your actual GitHub release URL:
 
 ```bash
 wget https://github.com/YOUR_USERNAME/The-G-Os/releases/download/v0.3/the-g-os.iso
@@ -163,85 +151,60 @@ wget https://github.com/YOUR_USERNAME/The-G-Os/releases/download/v0.3/the-g-os.i
 
 ## Current Status
 
-```txt
-Version: v0.3
-Architecture: x86 32-bit
-Boot Method: GRUB Multiboot
-Kernel Language: C++ and Assembly
-Interface: Terminal Shell
-Linux Kernel Usage: None
+```
+Version      :  v0.3
+Architecture :  x86 32-bit
+Bootloader   :  GRUB Multiboot
+Kernel       :  C++ + Assembly
+Interface    :  Terminal Shell
+Linux Kernel :  None
 ```
 
 ---
 
 ## Networking Roadmap
 
-The current version does not yet provide real internet access. Networking is being developed step by step.
+Real networking is being developed step by step. Current version has placeholder commands only.
 
-Planned roadmap:
-
-```txt
-PCI Device Detection
-↓
-Intel e1000 Ethernet Driver
-↓
-Ethernet Frame Handling
-↓
-ARP
-↓
-IPv4
-↓
-ICMP Ping
-↓
-UDP
-↓
-DNS
-↓
-TCP
+```
+[✓] PCI Device Detection
+[ ] Intel e1000 Ethernet Driver
+[ ] Ethernet Frame Handling
+[ ] ARP
+[ ] IPv4
+[ ] ICMP Ping
+[ ] UDP
+[ ] DNS
+[ ] TCP
+[ ] Wi-Fi (long-term — requires chipset drivers + WPA/WPA2)
 ```
 
-Wi-Fi support is planned for a later stage because it requires chipset-specific drivers, wireless protocol handling, and WPA/WPA2 authentication support.
+---
+
+## Planned Features
+
+- Real physical memory map support
+- Dynamic heap allocator
+- Improved shell parser with autocomplete
+- Real file system with disk read/write
+- PCI hardware identification
+- Intel e1000 Ethernet driver
+- ICMP ping command
+- Basic HTTP terminal client
+- Improved boot splash screen
+- Better support for old Intel Atom laptops
 
 ---
 
 ## Design Goals
 
-* Build an independent operating system from scratch
-* Avoid dependency on the Linux kernel
-* Keep the system lightweight and terminal-first
-* Understand low-level hardware and kernel internals
-* Support old and low-resource x86 machines
-* Develop custom memory, shell, file, and network systems
-* Create a personal OS environment with full control
-
----
-
-## Why The-G-Os?
-
-The-G-Os is not being built to copy Windows, macOS, or Linux. It is being built as a personal experiment in operating system design.
-
-Windows can feel bloated and restrictive. macOS is polished but proprietary and closed. Linux is powerful, but the large number of distributions means every system comes with different trade-offs, configurations, package choices, and design decisions. The-G-Os is my attempt to learn from all of them while building a system that is simple, direct, lightweight, and fully under my own control.
-
-The goal is to create a system that starts small, boots fast, gives a clean terminal interface, and gradually grows into a more capable independent operating system.
-
----
-
-## Future Development
-
-Planned features include:
-
-* Real physical memory map support
-* Dynamic heap allocator
-* Improved shell parser
-* Command autocomplete
-* Real file system support
-* Disk read/write support
-* PCI hardware identification
-* Intel e1000 Ethernet driver
-* ICMP ping command
-* Basic HTTP terminal command
-* Better boot splash screen
-* Improved support for old Intel Atom laptops
+- Build an independent OS entirely from scratch
+- Avoid all dependency on the Linux kernel
+- Keep the system lightweight and terminal-first
+- Deeply understand low-level hardware and kernel internals
+- Support old and resource-constrained x86 machines
+- Develop custom memory, shell, file, and network subsystems
+- Create a personal OS environment under full personal control
 
 ---
 
@@ -253,9 +216,6 @@ This project is currently under personal development and experimentation.
 
 ## Author
 
-Mahesh Babu
+**Mahesh Babu**
 
-**The-G-Os — Independent C++ Kernel Operating System**
-
-```
-```
+> *The-G-Os — Independent C++ Kernel Operating System*
