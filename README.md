@@ -52,8 +52,6 @@ Windows feels bloated and restrictive. macOS is proprietary and closed. Linux is
 | **Platform** | QEMU and VirtualBox compatible |
 | **Target** | Lightweight — runs on old x86 hardware |
 
----
-
 ## Shell Commands
 
 ```
@@ -75,8 +73,6 @@ clear         Clear the terminal
 reboot        Reboot the system
 ```
 
----
-
 ## Technologies
 
 - **C++** — Kernel logic and system internals
@@ -87,8 +83,6 @@ reboot        Reboot the system
 - **Makefile** — Build system
 - **QEMU / VirtualBox** — Emulation and virtualization
 - **WSL Ubuntu** — Build environment on Windows
-
----
 
 ## Build Requirements
 
@@ -104,8 +98,6 @@ sudo apt install -y \
   grub-pc-bin xorriso qemu-system-x86 nasm make \
   gcc-i686-linux-gnu g++-i686-linux-gnu binutils-i686-linux-gnu
 ```
-
----
 
 ## Build & Run
 
@@ -146,8 +138,6 @@ make run-net
 4. Attach `the-g-os.iso` as the optical disk
 5. Start the machine
 
----
-
 ## ISO Download
 
 Replace the link with your actual GitHub release URL:
@@ -155,8 +145,6 @@ Replace the link with your actual GitHub release URL:
 ```bash
 https://github.com/R-Mahesh-Babu-001/The-G-Os/releases/tag/v0.3
 ```
-
----
 
 ## Current Status
 
@@ -168,8 +156,6 @@ Kernel       :  C++ + Assembly
 Interface    :  Terminal Shell
 Linux Kernel :  None
 ```
-
----
 
 ## Networking Roadmap
 
@@ -188,8 +174,6 @@ Real networking is being developed step by step. Current version has placeholder
 [ ] Wi-Fi (long-term — requires chipset drivers + WPA/WPA2)
 ```
 
----
-
 ## Planned Features
 
 - Real physical memory map support
@@ -203,8 +187,6 @@ Real networking is being developed step by step. Current version has placeholder
 - Improved boot splash screen
 - Better support for old Intel Atom laptops
 
----
-
 ## Design Goals
 
 - Build an independent OS entirely from scratch
@@ -215,16 +197,32 @@ Real networking is being developed step by step. Current version has placeholder
 - Develop custom memory, shell, file, and network subsystems
 - Create a personal OS environment under full personal control
 
----
 
 ## License
 
 This project is currently under personal development and experimentation.
 
----
 
 ## Author
 
-**Mahesh Babu**
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; padding: 40px 20px;">
 
-> *The-G-Os — Independent C++ Kernel Operating System*
+    <img src="https://github.com/R-Mahesh-Babu-001/repo_for_images/blob/main/G%20will%20be%20back.png" 
+         alt="The-G-Os Update" 
+         style="max-width: 100%; width: 700px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+
+    <div>
+        <h1 style="font-size: 3rem; margin-bottom: 10px;">
+            Mahesh Babu
+        </h1>
+
+        <p style="font-size: 1.3rem; color: #cfcfcf; margin-bottom: 15px;">
+            <i>The-G-Os — Independent C++ Kernel Operating System</i>
+        </p>
+
+        <h2 style="font-size: 2rem; font-weight: bold; letter-spacing: 1px;">
+            G Will Be Back Again With Another Update
+        </h2>
+    </div>
+
+</div>
