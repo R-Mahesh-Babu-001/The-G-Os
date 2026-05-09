@@ -32,7 +32,7 @@ Windows feels bloated and restrictive. macOS is proprietary and closed. Linux is
 
 <td width="30%" align="right">
 
-<img src="YOUR_IMAGE_LINK_HERE" width="300"/>
+<img src="https://github.com/R-Mahesh-Babu-001/repo_for_images/blob/main/The-G-Os-logo.png" width="300"/>
 
 </td>
 </tr>
