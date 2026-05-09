@@ -214,8 +214,6 @@ This project is currently under personal development and experimentation.
     style="border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.35);"
 />
 
-<br><br>
-
 # Mahesh Babu
 
 ### *The-G-Os — Independent C++ Kernel Operating System*
