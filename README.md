@@ -14,8 +14,6 @@ Built from scratch. No Linux kernel. No compromises.</p>
 
 </div>
 
----
-
 <table>
 <tr>
 <td width="70%">
@@ -37,7 +35,6 @@ Windows feels bloated and restrictive. macOS is proprietary and closed. Linux is
 </td>
 </tr>
 </table>
----
 
 ## Features
 
