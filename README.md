@@ -16,6 +16,10 @@ Built from scratch. No Linux kernel. No compromises.</p>
 
 ---
 
+<table>
+<tr>
+<td width="70%">
+
 ## Overview
 
 The-G-Os is a low-level kernel development project built entirely from scratch in C++ and x86 Assembly. The goal is simple: build an operating system I can truly understand, control, and shape — without depending on Linux or any existing kernel.
@@ -24,6 +28,15 @@ Windows feels bloated and restrictive. macOS is proprietary and closed. Linux is
 
 **Current capabilities include:** booting via GRUB, a VGA text-mode terminal, a functional shell with command history, RAM-based file system simulation, PCI hardware scanning, and a memory manager skeleton.
 
+</td>
+
+<td width="30%" align="right">
+
+<img src="YOUR_IMAGE_LINK_HERE" width="300"/>
+
+</td>
+</tr>
+</table>
 ---
 
 ## Features
