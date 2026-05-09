@@ -205,16 +205,18 @@ This project is currently under personal development and experimentation.
 
 ## Author
 
-<div align="center">
+  
 # Mahesh Babu
+
 ### *The-G-Os — Independent C++ Kernel Operating System*
+
 <img 
     src="https://raw.githubusercontent.com/R-Mahesh-Babu-001/repo_for_images/main/G%20will%20be%20back.png"
     alt="The-G-Os Update"
     width="850"
     style="border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.35);"
 />
-<h2>
+<center><h2>
 G Will Be Back Again With Another Update
-</h2>
+</h2></center>
 </div>
