@@ -128,8 +128,6 @@ make run
 make run-net
 ```
 
----
-
 ## Running in VirtualBox
 
 1. Create a new virtual machine
@@ -204,19 +202,19 @@ This project is currently under personal development and experimentation.
 
 
 ## Author
-
-  
-# Mahesh Babu
+### Mahesh Babu
 
 ### *The-G-Os — Independent C++ Kernel Operating System*
 
-<img 
+<p align="center">
+  <img 
     src="https://raw.githubusercontent.com/R-Mahesh-Babu-001/repo_for_images/main/G%20will%20be%20back.png"
     alt="The-G-Os Update"
     width="850"
     style="border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.35);"
-/>
-<center><h2>
-G Will Be Back Again With Another Update
-</h2></center>
-</div>
+  />
+</p>
+
+<h2 align="center">
+  G Will Be Back Again With Another Update
+</h2>
