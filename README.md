@@ -205,24 +205,25 @@ This project is currently under personal development and experimentation.
 
 ## Author
 
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; padding: 40px 20px;">
+<div align="center">
 
-    <img src="https://github.com/R-Mahesh-Babu-001/repo_for_images/blob/main/G%20will%20be%20back.png" 
-         alt="The-G-Os Update" 
-         style="max-width: 100%; width: 700px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+<img 
+    src="https://raw.githubusercontent.com/R-Mahesh-Babu-001/repo_for_images/main/G%20will%20be%20back.png"
+    alt="The-G-Os Update"
+    width="850"
+    style="border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.35);"
+/>
 
-    <div>
-        <h1 style="font-size: 3rem; margin-bottom: 10px;">
-            Mahesh Babu
-        </h1>
+<br><br>
 
-        <p style="font-size: 1.3rem; color: #cfcfcf; margin-bottom: 15px;">
-            <i>The-G-Os — Independent C++ Kernel Operating System</i>
-        </p>
+# Mahesh Babu
 
-        <h2 style="font-size: 2rem; font-weight: bold; letter-spacing: 1px;">
-            G Will Be Back Again With Another Update
-        </h2>
-    </div>
+### *The-G-Os — Independent C++ Kernel Operating System*
+
+<br>
+
+<h2>
+G Will Be Back Again With Another Update
+</h2>
 
 </div>
