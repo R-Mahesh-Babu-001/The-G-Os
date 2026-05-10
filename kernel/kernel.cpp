@@ -6,7 +6,6 @@
 extern "C" void kernel_main();
 
 extern "C" void kernel_main() {
-    splash_show();
 
     terminal_clear();
     terminal_banner();
