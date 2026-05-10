@@ -2,10 +2,10 @@
 #include "terminal.hpp"
 #include "keyboard.hpp"
 #include "string.hpp"
-#include "ramfs.hpp"
 #include "memory.hpp"
 #include "pci.hpp"
 #include "io.hpp"
+#include "vfs.hpp"
 
 struct Command {
     const char* name;
@@ -48,15 +48,27 @@ static void cmd_ping(const char*);
 static void cmd_history(const char*);
 static void cmd_dsa(const char*);
 static void cmd_reboot(const char*);
+static void cmd_pwd(const char*);
+static void cmd_tree(const char*);
+static void cmd_touch(const char*);
+static void cmd_mkdir(const char*);
+static void cmd_write(const char*);
+static void cmd_cd(const char*);
 
 static Command commands[] = {
     {"help", "Show all commands", cmd_help},
     {"clear", "Clear terminal", cmd_clear},
     {"about", "About The-G-Os", cmd_about},
     {"version", "Show version", cmd_version},
-    {"ls", "List RAM files", cmd_ls},
-    {"cat", "Read RAM file", cmd_cat},
+    {"ls", "List files and directories", cmd_ls},
+    {"cat", "Read file from VFS", cmd_cat},
     {"echo", "Print text", cmd_echo},
+    {"pwd", "Show current directory", cmd_pwd},
+    {"tree", "Show VFS directory tree", cmd_tree},
+    {"touch", "Create file", cmd_touch},
+    {"mkdir", "Create directory", cmd_mkdir},
+    {"write", "Write text into file", cmd_write},
+    {"cd", "Change directory", cmd_cd},
     {"meminfo", "Show memory information", cmd_meminfo},
     {"pci", "Scan PCI devices", cmd_pci},
     {"netinfo", "Show network roadmap", cmd_netinfo},
@@ -81,8 +93,14 @@ static void cmd_help(const char*) {
 
     terminal_print("\nExamples:\n");
     terminal_print("  ls\n");
+    terminal_print("  pwd\n");
+    terminal_print("  tree\n");
     terminal_print("  cat readme\n");
-    terminal_print("  cat hpmini\n");
+    terminal_print("  mkdir projects\n");
+    terminal_print("  cd projects\n");
+    terminal_print("  touch notes\n");
+    terminal_print("  write notes The-G-Os has a RAM VFS\n");
+    terminal_print("  cat notes\n");
     terminal_print("  meminfo\n");
     terminal_print("  pci\n");
     terminal_print("  ping 8.8.8.8\n");
@@ -96,16 +114,16 @@ static void cmd_clear(const char*) {
 static void cmd_about(const char*) {
     terminal_print("The-G-Os is an independent C++ kernel operating system.\n");
     terminal_print("It does not use the Linux kernel.\n");
-    terminal_print("v0.3 adds command history, bitmap memory skeleton, PCI scanner,\n");
-    terminal_print("RAM file system, and terminal internet foundation commands.\n");
+    terminal_print("This version includes terminal shell, command history,\n");
+    terminal_print("bitmap memory skeleton, PCI scanner, and RAM-based VFS.\n");
 }
 
 static void cmd_version(const char*) {
-    terminal_print("The-G-Os v0.3 Terminal Internet Foundation\n");
+    terminal_print("The-G-Os v0.4 RAM VFS Edition\n");
 }
 
 static void cmd_ls(const char*) {
-    ramfs_list();
+    vfs_ls();
 }
 
 static void cmd_cat(const char* args) {
@@ -114,12 +132,71 @@ static void cmd_cat(const char* args) {
         return;
     }
 
-    ramfs_cat(args);
+    vfs_cat(args);
 }
 
 static void cmd_echo(const char* args) {
     terminal_print(args);
     terminal_print("\n");
+}
+
+static void cmd_pwd(const char*) {
+    vfs_pwd();
+}
+
+static void cmd_tree(const char*) {
+    vfs_tree();
+}
+
+static void cmd_touch(const char* args) {
+    vfs_touch(args);
+}
+
+static void cmd_mkdir(const char* args) {
+    vfs_mkdir(args);
+}
+
+static void cmd_cd(const char* args) {
+    vfs_cd(args);
+}
+
+static void cmd_write(const char* args) {
+    if (!args || args[0] == '\0') {
+        terminal_print_color("Usage: write filename text\n", COLOR_YELLOW);
+        return;
+    }
+
+    char filename[64];
+    char text[256];
+
+    int i = 0;
+    int j = 0;
+
+    while (args[i] && args[i] != ' ' && i < 63) {
+        filename[i] = args[i];
+        i++;
+    }
+
+    filename[i] = '\0';
+
+    while (args[i] == ' ') {
+        i++;
+    }
+
+    while (args[i] && j < 255) {
+        text[j] = args[i];
+        j++;
+        i++;
+    }
+
+    text[j] = '\0';
+
+    if (filename[0] == '\0' || text[0] == '\0') {
+        terminal_print_color("Usage: write filename text\n", COLOR_YELLOW);
+        return;
+    }
+
+    vfs_write(filename, text);
 }
 
 static void cmd_meminfo(const char*) {
@@ -170,17 +247,18 @@ static void cmd_history(const char*) {
 }
 
 static void cmd_dsa(const char*) {
-    terminal_print("DSA concepts used in The-G-Os v0.3:\n");
+    terminal_print("DSA concepts used in The-G-Os v0.4:\n");
     terminal_print("  Command Table       - shell command dispatch\n");
     terminal_print("  Circular History    - recent command storage\n");
-    terminal_print("  Static RAM FS Table  - file lookup\n");
+    terminal_print("  VFS Tree            - directory and file hierarchy\n");
+    terminal_print("  Inode-style Table   - VFS node storage\n");
+    terminal_print("  Parent Pointers     - cd .. navigation\n");
     terminal_print("  Bitmap Allocator    - memory page tracking skeleton\n");
     terminal_print("  Linear PCI Scan     - hardware discovery foundation\n");
     terminal_print("\nFuture DSA upgrades:\n");
+    terminal_print("  Hash Table          - faster command and file lookup\n");
     terminal_print("  Ring Buffer         - keyboard/event queue\n");
-    terminal_print("  Hash Table          - faster command lookup\n");
     terminal_print("  Queue               - network packet queue\n");
-    terminal_print("  Tree                - real directory system\n");
     terminal_print("  Linked List         - process/task scheduler\n");
 }
 
@@ -269,7 +347,8 @@ void shell_start() {
 
             else {
                 if (index < COMMAND_BUFFER_SIZE - 1) {
-                    command_buffer[index++] = c;
+                    command_buffer[index] = c;
+                    index++;
                     terminal_putchar(c);
                 }
             }
