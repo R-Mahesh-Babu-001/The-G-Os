@@ -1,10 +1,13 @@
 #include "terminal.hpp"
 #include "shell.hpp"
 #include "memory.hpp"
+#include "vfs.hpp"
 
 extern "C" void kernel_main();
 
 extern "C" void kernel_main() {
+    splash_show();
+
     terminal_clear();
     terminal_banner();
 
@@ -15,7 +18,9 @@ extern "C" void kernel_main() {
     memory_init();
     terminal_print("Initializing bitmap memory manager... OK\n");
 
-    terminal_print("Loading RAM file table... OK\n");
+    vfs_init();
+    terminal_print("Initializing RAM VFS... OK\n");
+
     terminal_print("Loading PCI scanner... OK\n");
     terminal_print("Loading shell... OK\n\n");
 
