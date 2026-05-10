@@ -14,7 +14,9 @@ kernel/string.o \
 kernel/shell.o \
 kernel/ramfs.o \
 kernel/memory.o \
-kernel/pci.o
+kernel/pci.o \
+kernel/splash.o \
+kernel/vfs.o
 
 all: the-g-os.iso
 
@@ -44,6 +46,12 @@ kernel/memory.o: kernel/memory.cpp
 
 kernel/pci.o: kernel/pci.cpp
 	$(CXX) $(CXXFLAGS) -c kernel/pci.cpp -o kernel/pci.o
+
+kernel/splash.o: kernel/splash.cpp
+	$(CXX) $(CXXFLAGS) -c kernel/splash.cpp -o kernel/splash.o
+
+kernel/vfs.o: kernel/vfs.cpp
+	$(CXX) $(CXXFLAGS) -c kernel/vfs.cpp -o kernel/vfs.o
 
 the_g_kernel.bin: $(OBJECTS)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o the_g_kernel.bin -lgcc
